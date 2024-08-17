@@ -39,3 +39,5 @@ profile = {
     eth_name = "eth0"
   }
 }
+
+image_name = "images:ubuntu/24.04/cloud/amd64"
