@@ -3,7 +3,8 @@ variable "kubenet" {
   default = [
     "kube-control-1",
     "kube-minion-1",
-    "kube-minion-2"
+    "kube-minion-2",
+    "kube-lb-1"
   ]
 }
 
