@@ -2,8 +2,11 @@ variable "kubenet" {
   type = list(string)
   default = [
     "kube-control-1",
+    "kube-control-2",
+    "kube-control-3",
     "kube-minion-1",
     "kube-minion-2",
+    "kube-minion-3",
     "kube-lb-1"
   ]
 }
