@@ -4,6 +4,12 @@ network = {
   dns_domain = "ks"
 }
 
+static_network = {
+  name   = "eth0"
+  offset = 50
+  range  = "192.168.100"
+}
+
 pool_name = "kube"
 
 profile = {
@@ -35,9 +41,6 @@ profile = {
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWSCBV+u+F8WqvZp3um1Wj/dq0vJpytljaRA1EuBJlm wraith@kelpie
   EOH
-  devices = {
-    eth_name = "eth0"
-  }
 }
 
 image_name = "images:ubuntu/24.04/cloud/amd64"

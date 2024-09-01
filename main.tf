@@ -32,14 +32,6 @@ resource "incus_profile" "terra" {
   config = {
     "cloud-init.user-data" = var.profile.cloud_init
   }
-  device {
-    name = var.profile.devices.eth_name
-    type = "nic"
-    properties = {
-      name    = var.profile.devices.eth_name
-      network = var.network.name
-    }
-  }
 
   device {
     name = "root"

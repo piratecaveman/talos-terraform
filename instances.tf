@@ -37,6 +37,17 @@ resource "incus_instance" "kubenet" {
     cpu    = 2
     memory = "3GB"
   }
+
+  device {
+    type = "nic"
+    name = "eth0"
+    properties = {
+      "ipv4.address" = "${var.static_network.range}.${count.index + var.static_network.offset}"
+      name           = "eth0"
+      network        = var.network.name
+    }
+  }
+
   device {
     type = "disk"
     name = "${var.kubenet[count.index]}-volume"
