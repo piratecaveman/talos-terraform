@@ -7,7 +7,6 @@ variable "kubenet" {
     "kube-minion-1",
     "kube-minion-2",
     "kube-minion-3",
-    "kube-lb-1"
   ]
 }
 
