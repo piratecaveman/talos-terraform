@@ -1,0 +1,3 @@
+[submodule "incus"]
+	path = incus
+	url = https://github.com/piratecaveman/incus-modules.git

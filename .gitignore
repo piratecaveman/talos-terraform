@@ -1,0 +1,9 @@
+**/**
+!*.tf
+!.gitignore
+!.gitmodules
+!data/
+!data/**
+!incus/
+!incus/**
+
