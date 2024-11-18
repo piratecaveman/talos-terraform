@@ -1,6 +1,6 @@
 module "instance" {
   for_each = local.instances
-  source   = "../incus/instance"
+  source   = "./incus/instance"
 
   name             = try(each.value.name, each.key)
   source_instances = merge(var.instance_config.source_instances, try(each.value.source_instances, {}))

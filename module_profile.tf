@@ -1,5 +1,5 @@
 module "profile" {
-  source   = "../incus/profile"
+  source   = "./incus/profile"
   for_each = local.profiles
 
   name        = try(each.value.name, each.key)

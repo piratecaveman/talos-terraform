@@ -1,6 +1,6 @@
 module "pool" {
   for_each = local.pools
-  source   = "../incus/pool"
+  source   = "./incus/pool"
 
   name        = try(each.value.name, each.key)
   config      = merge(var.pool_config.config, try(each.value.config, {}))

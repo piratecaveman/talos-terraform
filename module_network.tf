@@ -1,6 +1,6 @@
 module "network" {
   for_each = local.networks
-  source   = "../incus/network"
+  source   = "./incus/network"
 
   name        = try(each.value.name, each.key)
   config      = merge(var.network_config.config, try(each.value.config, {}))

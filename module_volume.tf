@@ -1,6 +1,6 @@
 module "volume" {
   for_each = local.volumes
-  source   = "../incus/volume"
+  source   = "./incus/volume"
 
   name         = try(each.value.name, each.key)
   pool         = lookup(each.value, "pool", var.volume_config.pool)
