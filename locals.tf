@@ -9,7 +9,7 @@ locals {
     "kube-minion-3",
   ]
   ip_range_offset = 50
-  ip_range = "192.168.100.1"
+  ip_range        = "192.168.100.1"
 
   networks = {
     terranet = {
@@ -18,6 +18,7 @@ locals {
       description = "Network for kubernetes"
       config = {
         "ipv4.address" = "${local.ip_range}/24"
+        "ipv4.nat"     = true
         "ipv6.address" = "none"
         "dns.domain"   = "ks"
       }
@@ -55,7 +56,7 @@ locals {
   }
 
   volumes = { for key in local.machines : key => {
-    profile = "terra"
+    profile      = "terra"
     name         = key
     pool         = module.pool[[for item in local.pools : item.name if item.profile == "terra"][0]].pool.name
     description  = "Kubernetes pool ${key}"
@@ -68,29 +69,29 @@ locals {
     }
   }
 
-  instances = {for key in local.machines: key => {
-    name = key
-    image = "images:ubuntu/24.04/cloud/amd64"
+  instances = { for key in local.machines : key => {
+    name        = key
+    image       = "images:ubuntu/24.04/cloud/amd64"
     description = "Kubernetes node: ${key}"
-    type = "virtual-machine"
-    profiles = [for item in local.profiles: item.name if item.name == "terra"]
+    type        = "virtual-machine"
+    profiles    = [for item in local.profiles : item.name if item.name == "terra"]
     devices = {
       "ceph" = {
-        name = join("",[for item in split("-", key): substr(item, 0, 1)])
+        name = join("", [for item in split("-", key) : substr(item, 0, 1)])
         type = "disk"
         properties = {
           source = module.volume[key].volume.name
-          pool = module.pool[[for item in local.pools : item.name if item.profile == "terra"][0]].pool.name
+          pool   = module.pool[[for item in local.pools : item.name if item.profile == "terra"][0]].pool.name
         }
       }
       "network" = {
         name = "eth0"
         type = "nic"
         properties = {
-          network = module.network[[for item in local.networks: item.name if item.profile == "terra"][0]].network.name
+          network        = module.network[[for item in local.networks : item.name if item.profile == "terra"][0]].network.name
           "ipv4.address" = "${join(".", slice(split(".", local.ip_range), 0, 3))}.${tonumber(split(".", local.ip_range)[3]) + local.ip_range_offset - 1 + index(local.machines, key)}"
         }
       }
     }
-  }}
+  } }
 }
