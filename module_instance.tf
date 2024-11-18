@@ -12,7 +12,6 @@ module "instance" {
   profiles         = lookup(each.value, "profiles", var.instance_config.profiles)
   devices          = merge(var.instance_config.devices, try(each.value.devices, {}))
   files            = merge(var.instance_config.files, try(each.value.files, {}))
-  limits           = merge(var.instance_config.limits, try(each.value.limits, {}))
   config           = merge(var.instance_config.config, try(each.value.config, {}))
   project          = lookup(each.value, "project", var.instance_config.project)
   remote           = lookup(each.value, "remote", var.instance_config.remote)
