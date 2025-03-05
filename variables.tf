@@ -1,33 +1,34 @@
-variable "network_config" {
+variable "pool_config" {
   default = {
     name        = null
+    driver      = null
     description = null
-    type        = "bridge"
-    config      = {}
+    config      = null
     project     = null
     remote      = null
     target      = null
   }
 }
 
-variable "pool_config" {
+variable "network_config" {
   default = {
     name        = null
-    driver      = "dir"
     description = null
-    config      = {}
+    type        = null
+    config      = null
     project     = null
     remote      = null
     target      = null
   }
+
 }
 
 variable "profile_config" {
   default = {
     name        = null
     description = null
-    devices     = {}
-    config      = {}
+    devices     = null
+    config      = null
     project     = null
     remote      = null
   }
@@ -35,15 +36,16 @@ variable "profile_config" {
 
 variable "volume_config" {
   default = {
-    name         = null
-    pool         = null
-    description  = null
-    type         = "custom"
-    content_type = "block"
-    config       = {}
-    project      = null
-    remote       = null
-    target       = null
+    name          = null
+    pool          = null
+    description   = null
+    type          = null
+    content_type  = null
+    config        = null
+    project       = null
+    remote        = null
+    target        = null
+    source_volume = null
   }
 }
 
@@ -51,17 +53,15 @@ variable "instance_config" {
   default = {
     name             = null
     image            = null
-    source_instances = {}
     description      = null
-    type             = "container"
-    ephemeral        = false
-    running          = true
-    wait_for_network = true
-    profiles         = []
-    devices          = {}
-    files            = {}
-    limits           = {}
-    config           = {}
+    type             = null
+    ephemeral        = null
+    running          = null
+    wait_for_network = null
+    profiles         = null
+    devices          = null
+    files            = null
+    config           = null
     project          = null
     remote           = null
     target           = null
